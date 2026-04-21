@@ -121,7 +121,7 @@ export default function SoothingPortfolio() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className="lg:w-[35%] flex flex-col lg:justify-between py-4 lg:py-10 gap-10 lg:gap-0"
         >
           <div className="relative">
@@ -201,7 +201,7 @@ export default function SoothingPortfolio() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
             className="flex-1 flex flex-col sm:flex-row gap-5 xl:gap-7 lg:min-h-0"
           >
             {/* Experience */}
@@ -258,7 +258,7 @@ export default function SoothingPortfolio() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
             className="flex-1 lg:min-h-0"
           >
             <OpticalPane>
