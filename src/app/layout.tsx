@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aamod Bhatt — AI/ML Engineer",
+  title: "Aamod Bhatt — Machine Learning Engineer",
   description:
-    "Portfolio of Aamod Bhatt. AI/ML engineer building production systems, automating workflows, and shipping research into code.",
+    "Machine learning engineer working on video generation, language models, and production ML systems. Explore research, open-source contributions, and selected projects.",
   keywords: [
     "Aamod Bhatt",
     "AI Engineer",
@@ -29,17 +29,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Aamod Bhatt" }],
   openGraph: {
-    title: "Aamod Bhatt — AI/ML Engineer",
+    title: "Aamod Bhatt — Machine Learning Engineer",
     description:
-      "I build things that think — and occasionally things that work.",
+      "Machine learning research, open-source contributions, and working systems.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aamod Bhatt — AI/ML Engineer",
+    title: "Aamod Bhatt — Machine Learning Engineer",
     description:
-      "I build things that think — and occasionally things that work.",
+      "Machine learning research, open-source contributions, and working systems.",
   },
 };
 
@@ -50,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-full antialiased noise-overlay">{children}</body>
+      <body className="min-h-full antialiased">{children}</body>
     </html>
   );
 }

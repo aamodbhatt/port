@@ -1,296 +1,134 @@
-"use client";
+import type { CSSProperties } from "react";
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Outfit, Playfair_Display } from "next/font/google";
-import { GithubLogo, LinkedinLogo, ArrowUpRight, EnvelopeSimple } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
-
-const outfit = Outfit({ subsets: ["latin"], display: "swap", weight: ["300", "400", "500", "600"] });
-const playfair = Playfair_Display({ subsets: ["latin"], style: ["normal", "italic"], display: "swap" });
-
-type Star = { top: number; left: number; delay: number; duration: number; scale: number };
-
-const ShootingStars = () => {
-  const [stars, setStars] = useState<Star[] | null>(null);
-
-  useEffect(() => {
-    setStars(
-      Array.from({ length: 10 }, () => ({
-        top: Math.random() * -10,
-        left: 10 + Math.random() * 150,
-        delay: Math.random() * 15,
-        duration: 3 + Math.random() * 4,
-        scale: 0.4 + Math.random() * 0.6,
-      })),
-    );
-  }, []);
-
+function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none mix-blend-screen">
-      <style>{`
-        .star-container { position: absolute; transform: rotate(135deg); }
-        .shooting-star {
-          width: 200px; height: 1px;
-          background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
-          border-radius: 999px;
-          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
-          animation: shoot 4s ease-out infinite; opacity: 0;
-        }
-        @keyframes shoot {
-          0% { transform: translateX(0); opacity: 0; }
-          10% { opacity: 1; }
-          60% { opacity: 0; }
-          100% { transform: translateX(1800px); opacity: 0; }
-        }
-      `}</style>
-      {stars?.map((s, i) => (
-        <div key={i} className="star-container" style={{ top: `${s.top}%`, left: `${s.left}%` }}>
-          <div
-            className="shooting-star"
-            style={{
-              animationDelay: `${s.delay}s`,
-              animationDuration: `${s.duration}s`,
-              transform: `scale(${s.scale})`,
-            }}
-          />
-        </div>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+      {diagonal ? <path d="M6 18 18 6M6 6h12v12" /> : <path d="M4 12h15m-6-6 6 6-6 6" />}
+    </svg>
+  );
+}
+
+function Orbit() {
+  return (
+    <div className="orbit" aria-hidden="true">
+      <div className="orbit-halo" />
+      <div className="orbit-ring orbit-ring-one" />
+      <div className="orbit-ring orbit-ring-two" />
+      <div className="orbit-ring orbit-ring-three" />
+      <div className="orbit-axis" />
+      <span className="orbit-core">✦</span>
+      <span className="orbit-satellite" />
+      {Array.from({ length: 25 }, (_, i) => (
+        <i key={i} className="star" style={{ "--x": `${(i * 37 + 13) % 100}%`, "--y": `${(i * 61 + 7) % 100}%`, opacity: 0.2 + (i % 4) * 0.15 } as CSSProperties} />
       ))}
+      <span className="orbit-coordinate">Always exploring.</span>
     </div>
   );
-};
-
-const OpticalPane = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`relative group overflow-hidden ${className}`}>
-    <div className="absolute inset-0 bg-black/60 backdrop-blur-2xl pointer-events-none transition-all duration-500 group-hover:bg-black/70" />
-    <div className="absolute inset-0 border border-white/10 transition-colors duration-500 group-hover:border-white/20" />
-    <div className="absolute top-0 left-0 w-4 h-[1px] bg-white/60 group-hover:w-8 transition-all duration-500" />
-    <div className="absolute top-0 left-0 w-[1px] h-4 bg-white/60 group-hover:h-8 transition-all duration-500" />
-    <div className="absolute bottom-0 right-0 w-4 h-[1px] bg-[#FF4500]/90 group-hover:w-8 transition-all duration-500" />
-    <div className="absolute bottom-0 right-0 w-[1px] h-4 bg-[#FF4500]/90 group-hover:h-8 transition-all duration-500" />
-    <div className="relative z-10 w-full h-full p-6 sm:p-8 lg:p-9 flex flex-col">{children}</div>
-  </div>
-);
-
-const capabilities = [
-  { label: "Core ML", items: "PyTorch · Diffusion · LoRA · RLHF" },
-  { label: "LLM Stack", items: "Transformers · RAG · LangChain · vLLM" },
-  { label: "Infra", items: "AWS · Docker · FastAPI · Vercel" },
-  { label: "Data & Ops", items: "Postgres · DuckDB · Pandas · Airflow" },
-];
+}
 
 const projects = [
-  { t: "FTunePrompt", desc: "experiments comparing LoRA fine-tuning vs prompting.", link: "https://github.com/aamodbhatt/ftuneprompt" },
-  { t: "Model Arena", desc: "LLM evaluation platform for side-by-side comparison.", link: "https://github.com/aamodbhatt/model-arena" },
-  { t: "TLDRUN", desc: "Research paper-to-code framework for automated pipelines.", link: "https://tldrun.vercel.app/" },
-  { t: "Recursive KE", desc: "Recursive retrieval pipeline for multi-hop reasoning.", link: "https://github.com/aamodbhatt/recursive-knowledge-engine" },
+  { name: "CycleFlow", category: "Video generation", description: "Exploring cycle-guided flow matching and RAFT optical-flow priors to keep generated video coherent across frames.", tags: ["PyTorch", "Diffusion", "RAFT"], href: "https://github.com/aamodbhatt/cycleflow", status: "In progress" },
+  { name: "FTunePrompt", category: "Model adaptation", description: "50+ controlled LoRA experiments comparing fine-tuning with prompting. A CLI that helps choose the right adaptation strategy.", tags: ["PyTorch", "PEFT", "LoRA"], href: "https://github.com/aamodbhatt/ftuneprompt" },
+  { name: "ChainScope", category: "Reasoning diagnostics", description: "Tracing and analyzing language-model reasoning chains to pinpoint where, and why, they go wrong.", tags: ["Python", "LLMs", "Open source"] },
+  { name: "TLDRUN", category: "Research tooling", description: "From a machine learning paper to a runnable starter repository, with dataset loaders, configs, and training pipelines.", tags: ["LangChain", "Python"], href: "https://tldrun.vercel.app/" },
+  { name: "Recursive Knowledge Engine", category: "Retrieval & reasoning", description: "An iterative retrieval pipeline that refines its own queries to answer questions requiring multiple reasoning steps.", tags: ["Python", "RAG"], href: "https://github.com/aamodbhatt/recursive-knowledge-engine" },
+  { name: "Model Arena", category: "Evaluation", description: "An evaluation platform for comparing language model responses side by side.", tags: ["LLMs", "Evaluation"], href: "https://github.com/aamodbhatt/model-arena" },
 ];
 
-export default function SoothingPortfolio() {
+const skills = [
+  { label: "Machine learning", value: "PyTorch, Transformers, LoRA / QLoRA, diffusion models, OpenCV" },
+  { label: "Languages", value: "Python, Java, C++, SQL, JavaScript" },
+  { label: "Full stack", value: "React, Next.js, Node.js, Express, PostgreSQL" },
+  { label: "Infrastructure & tools", value: "Docker, AWS EC2, Google Cloud, Linux, Git, LangChain, LangGraph" },
+];
+
+export default function Portfolio() {
   return (
-    <div
-      className={`relative min-h-screen w-full text-neutral-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 lg:h-screen lg:overflow-hidden ${outfit.className}`}
-    >
-      {/* Background image — local, optimized */}
-      <motion.div
-        initial={{ scale: 1.05, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute inset-0 z-0"
-      >
-        <Image
-          src="/bg-himalayas-night.jpg"
-          alt=""
-          fill
-          priority
-          quality={92}
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </motion.div>
+    <div className="site-shell">
+      <a className="skip-link" href="#main">Skip to content</a>
+      <header className="site-header">
+        <a href="#" className="wordmark" aria-label="Aamod Bhatt, home"><span aria-hidden="true">✦</span> ab.</a>
+        <nav aria-label="Main navigation">
+          <a href="#research">Research</a>
+          <a href="#work">Work</a>
+          <a href="mailto:bhatt.aamod@gmail.com">Let’s talk <Arrow diagonal /></a>
+        </nav>
+      </header>
 
-      {/* Gradients for text legibility */}
-      <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 z-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20 lg:to-transparent pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-2/3 lg:h-1/2 z-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
-
-      <ShootingStars />
-
-      {/* Main content */}
-      <main className="relative z-10 w-full max-w-[1500px] mx-auto flex flex-col lg:flex-row gap-6 xl:gap-8 lg:h-full">
-        {/* Left: Identity */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="lg:w-[35%] flex flex-col lg:justify-between py-4 lg:py-10 gap-10 lg:gap-0"
-        >
-          <div className="relative">
-            <div className="text-white/60 uppercase tracking-[0.4em] text-[10px] font-medium mb-8 lg:mb-12 flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 bg-[#FF4500] rounded-full animate-pulse" />
-                System.Active
-              </span>
-              <span className="text-white/30">·</span>
-              <span className="text-white/50">Hyderabad, IN</span>
+      <main id="main">
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow"><span className="status-dot" /> Machine learning engineer <span className="location">/ Hyderabad, IN</span></p>
+            <h1 id="hero-title">Aamod Bhatt<span className="name-period">.</span></h1>
+            <p className="hero-heading">Curiosity, translated<br />into working systems.</p>
+            <p className="hero-description">I build at the intersection of machine learning research and real-world engineering. Lately, that means video generation, language models, and a lot of experiments.</p>
+            <div className="hero-actions">
+              <a className="button-primary" href="#work">Explore my work <Arrow /></a>
+              <a className="text-link" href="/resume.pdf" download="Aamod-Bhatt-Resume.pdf">Download résumé <Arrow diagonal /></a>
             </div>
-
-            <h1
-              className={`${playfair.className} text-5xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-medium tracking-tight mb-2 drop-shadow-lg text-white`}
-            >
-              Aamod<br />
-              <span className="text-white/90 italic font-light">Bhatt</span>
-            </h1>
-            <h2 className="text-lg sm:text-xl xl:text-2xl font-light text-[#FF4500] mb-6 tracking-widest drop-shadow">
-              AI / ML ENGINEER
-            </h2>
-
-            <div className="h-px w-24 bg-gradient-to-r from-white/30 to-transparent mb-6" />
-
-            <p className="text-white/90 text-base lg:text-base xl:text-lg leading-relaxed font-light max-w-sm drop-shadow">
-              I build things that think... and occasionally things that work.
-              My focus is on <strong className="font-normal text-white">AI Research</strong>, creating production-ready systems, and automating workflows.
-            </p>
-
-            {/* Currently Building */}
-            <a
-              href="https://github.com/aamodbhatt/cycleflow"
-              target="_blank"
-              rel="noreferrer"
-              className="group mt-6 flex items-start gap-3 max-w-sm"
-            >
-              <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#FF4500] shadow-[0_0_10px_#FF4500] animate-pulse shrink-0" />
-              <div>
-                <div className="text-white/50 uppercase tracking-[0.3em] text-[9px] mb-2 flex items-center gap-2">
-                  Currently Building
-                  <span className="inline-flex items-center gap-1 text-[#FF4500] tracking-[0.2em] normal-case font-medium text-[11px]">
-                    Cycleflow
-                    <ArrowUpRight size={11} className="text-[#FF4500]/70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </span>
-                </div>
-                <div className="text-white/75 group-hover:text-white/90 text-sm font-light leading-snug transition-colors">
-                  Flow-guided video inpainting with cycle-consistent temporal coherence.
-                </div>
-              </div>
-            </a>
           </div>
+          <Orbit />
+          <div className="hero-footer"><span>Currently building <a href="https://github.com/aamodbhatt/cycleflow" target="_blank" rel="noreferrer">CycleFlow <Arrow diagonal /></a></span><a href="#research">A little further down <span aria-hidden="true">↓</span></a></div>
+        </section>
 
-          <div className="flex gap-8 items-center border-t border-white/20 pt-6 w-max">
-            <a href="https://github.com/aamodbhatt" target="_blank" rel="noreferrer" aria-label="GitHub" className="text-white/60 hover:text-white hover:-translate-y-1 transition-all duration-300">
-              <GithubLogo size={26} weight="light" />
-            </a>
-            <a href="https://linkedin.com/in/aamodbhatt" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-white/60 hover:text-white hover:-translate-y-1 transition-all duration-300">
-              <LinkedinLogo size={26} weight="light" />
-            </a>
-            <a href="mailto:bhatt.aamod@gmail.com" aria-label="Email" className="text-white/60 hover:text-white hover:-translate-y-1 transition-all duration-300">
-              <EnvelopeSimple size={26} weight="light" />
-            </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              download="Aamod-Bhatt-Resume.pdf"
-              className="text-[10px] uppercase tracking-[0.3em] text-white/60 hover:text-[#FF4500] transition-colors border-l border-white/20 pl-5 font-medium"
-            >
-              Résumé ↗
-            </a>
+        <section id="research" className="section" aria-labelledby="research-title">
+          <div className="section-heading"><p className="eyebrow">01 / Research &amp; open source</p><h2 id="research-title">Small details. Meaningful progress.</h2></div>
+          <div className="research-grid">
+            <article className="research-item">
+              <p className="eyebrow accent">IEEE CONECCT 2026 · Accepted</p>
+              <h3>Making missing frames<br />feel like they belong.</h3>
+              <p>Co-authored a flow-guided latent diffusion model for real-time video inpainting, with temporally consistent reconstruction across frames.</p>
+              <div className="research-footnote">Camera-ready version submitted</div>
+            </article>
+            <article className="research-item">
+              <p className="eyebrow accent">Parameter Golf · Merged contribution</p>
+              <h3 className="benchmark">1.1179 <span>bits per byte</span></h3>
+              <p>Set a benchmark leaderboard record using the Muon optimizer for test-time training. Ran distributed experiments on 8 NVIDIA H100s with self-funded compute.</p>
+              <a className="text-link" href="https://github.com/openai/parameter-golf/pull/1148" target="_blank" rel="noreferrer">View merged contribution <Arrow diagonal /></a>
+            </article>
           </div>
-        </motion.div>
-
-        {/* Right: Info grid */}
-        <div className="lg:w-[65%] flex flex-col gap-5 xl:gap-7 lg:min-h-0 lg:pl-10 lg:border-l border-white/20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-            className="flex-1 flex flex-col sm:flex-row gap-5 xl:gap-7 lg:min-h-0"
-          >
-            {/* Experience */}
-            <OpticalPane className="flex-[3]">
-              <div className="text-white/60 text-[10px] tracking-[0.3em] uppercase mb-6 lg:mb-8">Recent Experience</div>
-
-              <a
-                href="https://vitalcep.com"
-                target="_blank"
-                rel="noreferrer"
-                className="block mb-6 lg:mb-8 group/logo w-max"
-              >
-                <div className="relative">
-                  <div className="absolute -inset-2 bg-[#FF4500]/20 blur-xl opacity-0 group-hover/logo:opacity-100 transition-opacity" />
-                  <Image
-                    src="/vitalcep-logo.png"
-                    alt="Vitalcep"
-                    width={220}
-                    height={88}
-                    priority
-                    className="relative h-14 sm:h-16 lg:h-20 w-auto object-contain drop-shadow-[0_4px_20px_rgba(255,69,0,0.25)] transition-transform duration-500 group-hover/logo:scale-[1.03]"
-                  />
+        </section>
+        <section id="work" className="section work-section" aria-labelledby="work-title">
+          <div className="section-heading heading-with-link">
+            <div><p className="eyebrow">02 / Selected projects</p><h2 id="work-title">Ideas I’ve put to work.</h2></div>
+            <a className="text-link" href="https://github.com/aamodbhatt" target="_blank" rel="noreferrer">All on GitHub <Arrow diagonal /></a>
+          </div>
+          <div className="project-list">
+            {projects.map((project, i) => (
+              <article className="project" key={project.name}>
+                <span className="project-number" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div className="project-identity">
+                  <p className="eyebrow">{project.category}</p>
+                  <h3>{project.href ? <a href={project.href} target="_blank" rel="noreferrer">{project.name}<Arrow diagonal /></a> : project.name}</h3>
+                  {project.status && <span className="project-status"><span className="status-dot" />{project.status}</span>}
                 </div>
-              </a>
+                <div className="project-details"><p>{project.description}</p><ul className="tags" aria-label={`${project.name} technologies`}>{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul></div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-              <div className="text-[#FF4500] font-medium tracking-wide text-xs sm:text-sm uppercase mb-3">Growth &amp; Automation Lead</div>
-              <p className="text-white/80 font-light leading-relaxed text-sm max-w-sm">
-                Built an end-to-end Meta Ads automation pipeline managing 10k+ events daily.
-                Drastically cut manual setup time and improved ROAS metrics by 2.3x.
-              </p>
-            </OpticalPane>
+        <section id="about" className="section about-section" aria-labelledby="about-title">
+          <div className="section-heading"><p className="eyebrow">03 / A little background</p><h2 id="about-title">Research-minded. Hands-on.</h2></div>
+          <div className="about-grid">
+            <div>
+              <div className="experience-heading"><h3><a href="https://vitalcep.com" target="_blank" rel="noreferrer">Vitalcep <Arrow diagonal /></a></h3><p className="date">Dec 2024 — Jan 2026</p></div>
+              <p className="role">Growth &amp; Automation Engineer <span>· Part-time</span></p>
+              <p className="body-copy">Built an end-to-end Meta Ads automation pipeline with n8n on AWS EC2. Connected creative, campaign, and optimization workflows, handling 10,000+ events a day.</p>
+              <dl className="experience-stats"><div><dt>Less setup time</dt><dd>85%</dd></div><div><dt>Improvement in ROAS</dt><dd>2.3×</dd></div><div><dt>Workflow uptime</dt><dd>99.5%</dd></div></dl>
+              <div className="education"><p className="eyebrow">Education / 2022 — 2026</p><h3>B.E. in AI &amp; Machine Learning</h3><p>Acharya Institute of Technology · VTU</p><p className="education-score">9.28 / 10 CGPA</p></div>
+            </div>
+            <div className="toolkit"><p className="eyebrow">The tools behind the work</p><dl>{skills.map(skill => <div key={skill.label}><dt>{skill.label}</dt><dd>{skill.value}</dd></div>)}</dl></div>
+          </div>
+        </section>
 
-            {/* Capabilities */}
-            <OpticalPane className="flex-[2]">
-              <div className="text-white/60 text-[10px] tracking-[0.3em] uppercase mb-6 lg:mb-8">Capabilities</div>
-
-              <div className="flex flex-col justify-between flex-1 gap-3">
-                {capabilities.map((c, i) => (
-                  <div key={c.label}>
-                    <div className="group/item">
-                      <div className="text-[#FF4500]/80 uppercase text-[9px] tracking-widest mb-1 group-hover/item:text-[#FF4500] transition-colors">
-                        {c.label}
-                      </div>
-                      <div className="text-white/90 font-light text-[13px] xl:text-sm leading-snug">{c.items}</div>
-                    </div>
-                    {i < capabilities.length - 1 && <div className="h-px w-8 bg-white/20 mt-3" />}
-                  </div>
-                ))}
-              </div>
-            </OpticalPane>
-          </motion.div>
-
-          {/* Projects */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-            className="flex-1 lg:min-h-0"
-          >
-            <OpticalPane>
-              <div className="flex justify-between items-end mb-6 lg:mb-8">
-                <div className="text-white/60 text-[10px] tracking-[0.3em] uppercase">Selected Works</div>
-                <div className="text-white/40 text-[10px] tracking-widest">/04</div>
-              </div>
-
-              <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 lg:gap-y-6 lg:overflow-y-auto pr-2 no-scrollbar">
-                {projects.map((p, i) => (
-                  <a
-                    key={i}
-                    href={p.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group relative flex flex-col items-start border-l border-white/20 pl-4 hover:border-[#FF4500] transition-colors py-1"
-                  >
-                    <div className="flex items-center justify-between w-full mb-1">
-                      <h4 className="text-base font-medium text-white group-hover:text-[#FF4500] transition-colors">{p.t}</h4>
-                      <ArrowUpRight
-                        size={14}
-                        className="text-white/0 group-hover:text-[#FF4500] transition-all -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0"
-                      />
-                    </div>
-                    <p className="text-white/70 font-light text-xs leading-relaxed line-clamp-2">{p.desc}</p>
-                  </a>
-                ))}
-              </div>
-            </OpticalPane>
-          </motion.div>
-        </div>
+        <section className="contact-section" aria-labelledby="contact-title">
+          <p className="eyebrow"><span className="accent" aria-hidden="true">✦</span> / Make contact</p>
+          <div className="contact-row"><h2 id="contact-title">Have something<br />interesting in mind?</h2><a className="contact-link" href="mailto:bhatt.aamod@gmail.com">Let’s talk <Arrow diagonal /></a></div>
+          <a className="email-link" href="mailto:bhatt.aamod@gmail.com">bhatt.aamod@gmail.com</a>
+        </section>
       </main>
+      <footer className="site-footer"><span>© {new Date().getFullYear()} Aamod Bhatt</span><div><a href="https://github.com/aamodbhatt" target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a><a href="https://linkedin.com/in/aamodbhatt" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a><a href="/resume.pdf" download="Aamod-Bhatt-Resume.pdf">Résumé <Arrow diagonal /></a></div><a href="#">Back to top ↑</a></footer>
     </div>
   );
 }
