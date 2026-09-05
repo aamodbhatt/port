@@ -58,7 +58,7 @@ export default function Portfolio() {
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow"><span className="status-dot" /> Machine learning engineer <span className="location">/ Hyderabad, IN</span></p>
+            <p className="eyebrow"><span className="status-dot" /> Machine learning engineer</p>
             <h1 id="hero-title">Aamod Bhatt<span className="name-period">.</span></h1>
             <p className="hero-heading">Curiosity, translated<br />into working systems.</p>
             <p className="hero-description">I build at the intersection of machine learning research and real-world engineering. Lately, that means video generation, language models, and a lot of experiments.</p>
