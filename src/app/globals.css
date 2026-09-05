@@ -156,8 +156,8 @@ h3 { font-size: 25px; font-weight: 400; line-height: 1.4; letter-spacing: -.6px;
 /* A quiet night sky; the landscape stays still while small details move. */
 .atmosphere { position: relative; isolation: isolate; overflow: clip; }
 .night-backdrop { position: fixed; inset: 0; z-index: -3; background: #090e16; }
-.night-image { object-fit: cover; object-position: 65% center; }
-.night-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #070d16d6 0%, #070d1680 45%, #070d161c 80%), linear-gradient(0deg, #090e16eb 0%, transparent 45%, #090e1640 100%); }
+.night-image { object-fit: cover; object-position: 58% center; }
+.night-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #070d16e0 0%, #070d1699 45%, #070d164d 80%), linear-gradient(0deg, #090e16eb 0%, transparent 45%, #090e1640 100%); }
 .site-header { border-color: #d8e3f025; }
 .hero { padding-top: 95px; }
 .hero-copy { max-width: 680px; }
@@ -187,7 +187,9 @@ h2 { font-family: var(--font-display), Georgia, serif; font-size: 38px; letter-s
 .skill-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; }
 .skill-chips li { border: 1px solid #c3d4e224; background: #a9c1d408; padding: 6px 10px; border-radius: 7px; font-size: 14px; line-height: 1.6; color: #c9d2dc; }
 .contact-row h2 { font-size: 52px; font-weight: 400; }
-.site-footer { background: #090e16dc; padding-bottom: 80px; }
+.site-footer { background: #090e16dc; padding-bottom: 20px; }
+.photo-credit { padding: 0 0 80px; font-size: 12px; line-height: 1.9; color: #aeb8c5; }
+.photo-credit a { text-decoration: underline; text-underline-offset: 3px; }
 .shooting-stars { position: fixed; inset: 0; overflow: hidden; z-index: -2; pointer-events: none; }
 .shooting-stars i { position: absolute; top: 12%; left: 82%; width: 130px; height: 1px; background: linear-gradient(90deg, #eef2ffcc, transparent); opacity: 0; transform: rotate(-32deg); }
 .shooting-stars i:nth-child(2) { top: 28%; left: 95%; width: 85px; }

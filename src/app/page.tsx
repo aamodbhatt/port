@@ -28,7 +28,7 @@ const skills = [
 export default function Portfolio() {
   return (
     <Atmosphere>
-      <div className="night-backdrop" aria-hidden="true"><Image src="/himalayas-milky-way.png" alt="" fill sizes="100vw" priority className="night-image" /><div className="night-shade" /></div>
+      <div className="night-backdrop" aria-hidden="true"><Image src="/annapurna-milky-way.jpg" alt="" fill sizes="100vw" priority className="night-image" /><div className="night-shade" /></div>
       <div className="site-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <header className="site-header">
@@ -116,6 +116,7 @@ export default function Portfolio() {
         </div>
       </main>
       <footer className="site-footer"><span>© {new Date().getFullYear()} Aamod Bhatt</span><div><a href="https://github.com/aamodbhatt" target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a><a href="https://linkedin.com/in/aamodbhatt" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a><a href="/resume.pdf" download="Aamod-Bhatt-Resume.pdf">Résumé <Arrow diagonal /></a></div><a href="#">Back to top ↑</a></footer>
+      <p className="photo-credit">Background: <a href="https://commons.wikimedia.org/wiki/File:Mt._Annapurna_milkyway.jpg" target="_blank" rel="noreferrer">Annapurna · Shedeur Ghale</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a><span> · Cropped and shaded for display.</span></p>
       </div>
     </Atmosphere>
   );

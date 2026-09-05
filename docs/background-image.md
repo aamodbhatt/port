@@ -1,17 +1,16 @@
-# Himalayan night background
+# Annapurna night-sky photograph
 
-Asset: `public/himalayas-milky-way.png` (1672 × 941).
-Generated with the built-in imagegen tool, generate mode. This is an AI-generated Himalayan-inspired landscape, not a photograph documenting a particular peak.
-The application uses Next.js Image optimization. Shooting stars are separate CSS effects, so they can be paused or disabled through the reduced-motion preference.
+Current asset: `public/annapurna-milky-way.jpg` (3840 × 2433).
 
-## Exact generation prompt
+- Title: Mt. Annapurna milkyway
+- Photographer: Shedeur Ghale (Wikimedia Commons user Shedeur)
+- Date photographed: 1 November 2021
+- Source: https://commons.wikimedia.org/wiki/File:Mt._Annapurna_milkyway.jpg
+- Download: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Mt._Annapurna_milkyway.jpg/3840px-Mt._Annapurna_milkyway.jpg
+- License: Creative Commons Attribution-ShareAlike 4.0 International, https://creativecommons.org/licenses/by-sa/4.0/
 
-Use case: photorealistic-natural
-Asset type: full-width portfolio website background.
-Primary request: exactly one photorealistic cinematic Himalayan mountain panorama beneath the Milky Way at night, in wide 16:9 format, ideally 2048 x 1152.
-Scene/backdrop: deep midnight navy and charcoal night sky, fine realistic stars, a naturally detailed Milky Way sweep concentrated in the upper right.
-Subject: magnificent Himalayan mountains with silver moonlit snow ridges across the bottom 30 percent of the image; the tallest dramatic mountain peak is on the RIGHT.
-Style/medium: sophisticated authentic long-exposure landscape photography, realistic fine rock and snow texture, subtle atmospheric depth, quiet and majestic.
-Composition/framing: wide panorama; the LEFT 50 percent is mostly uncluttered deep dark sky providing strong negative space for legible ivory portfolio typography. Keep mountains concentrated low in the frame and the strongest mountain and galaxy details on the right. Make the mountain details visible and beautiful while the overall exposure remains dark.
-Lighting/mood: restrained silver moonlight on the snow; subtle warm starlight in the Milky Way; calm, luxurious, understated.
-Constraints: no text, no logos, no people, no buildings, no large moon, no shooting stars or meteor trails, no four-point star shapes, no illustration, no saturated purple, no neon, no UI or typography baked into the image. Generate only one image.
+This is a photographer-published image, replacing the previous AI-generated background. The source page identifies it as the photographer's own work and includes Nikon Z 6 II capture metadata (30 seconds, f/2.8, ISO 16000).
+
+The downloaded Wikimedia thumbnail is stored unchanged. Next.js optimizes delivery; CSS crops the visible framing and places dark overlays above the photo for readable text. The photograph and any adaptation of it remain under CC BY-SA 4.0. The site footer credits the photographer, links to the source and license, and notes the display adjustments. No endorsement is implied.
+
+Animated shooting stars are a separate decorative website layer. They are not part of the photograph. Motion can be paused and respects the reduced-motion preference.
