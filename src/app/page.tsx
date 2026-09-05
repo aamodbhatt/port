@@ -16,7 +16,7 @@ function Orbit() {
       <div className="orbit-ring orbit-ring-two" />
       <div className="orbit-ring orbit-ring-three" />
       <div className="orbit-axis" />
-      <span className="orbit-core">✦</span>
+      <span className="orbit-core" />
       <span className="orbit-satellite" />
       {Array.from({ length: 25 }, (_, i) => (
         <i key={i} className="star" style={{ "--x": `${(i * 37 + 13) % 100}%`, "--y": `${(i * 61 + 7) % 100}%`, opacity: 0.2 + (i % 4) * 0.15 } as CSSProperties} />
@@ -27,7 +27,7 @@ function Orbit() {
 }
 
 const projects = [
-  { name: "CycleFlow", category: "Video generation", description: "Exploring cycle-guided flow matching and RAFT optical-flow priors to keep generated video coherent across frames.", tags: ["PyTorch", "Diffusion", "RAFT"], href: "https://github.com/aamodbhatt/cycleflow", status: "In progress" },
+  { name: "Small Frame", category: "Local-first software", description: "An experimental runtime for small, local-first apps, exploring private collaboration through ordinary browser links.", tags: ["Rust", "TypeScript", "WebAssembly"], status: "In progress" },
   { name: "FTunePrompt", category: "Model adaptation", description: "50+ controlled LoRA experiments comparing fine-tuning with prompting. A CLI that helps choose the right adaptation strategy.", tags: ["PyTorch", "PEFT", "LoRA"], href: "https://github.com/aamodbhatt/ftuneprompt" },
   { name: "ChainScope", category: "Reasoning diagnostics", description: "Tracing and analyzing language-model reasoning chains to pinpoint where, and why, they go wrong.", tags: ["Python", "LLMs", "Open source"] },
   { name: "TLDRUN", category: "Research tooling", description: "From a machine learning paper to a runnable starter repository, with dataset loaders, configs, and training pipelines.", tags: ["LangChain", "Python"], href: "https://tldrun.vercel.app/" },
@@ -47,7 +47,7 @@ export default function Portfolio() {
     <div className="site-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <header className="site-header">
-        <a href="#" className="wordmark" aria-label="Aamod Bhatt, home"><span aria-hidden="true">✦</span> ab.</a>
+        <a href="#" className="wordmark" aria-label="Aamod Bhatt, home"><span className="brand-orbit" aria-hidden="true" /> ab.</a>
         <nav aria-label="Main navigation">
           <a href="#research">Research</a>
           <a href="#work">Work</a>
@@ -68,7 +68,7 @@ export default function Portfolio() {
             </div>
           </div>
           <Orbit />
-          <div className="hero-footer"><span>Currently building <a href="https://github.com/aamodbhatt/cycleflow" target="_blank" rel="noreferrer">CycleFlow <Arrow diagonal /></a></span><a href="#research">A little further down <span aria-hidden="true">↓</span></a></div>
+          <div className="hero-footer"><span>Currently building <a href="#small-frame">Small Frame <Arrow /></a></span><a href="#research">A little further down <span aria-hidden="true">↓</span></a></div>
         </section>
 
         <section id="research" className="section" aria-labelledby="research-title">
@@ -83,7 +83,7 @@ export default function Portfolio() {
             <article className="research-item">
               <p className="eyebrow accent">Parameter Golf · Merged contribution</p>
               <h3 className="benchmark">1.1179 <span>bits per byte</span></h3>
-              <p>Set a benchmark leaderboard record using the Muon optimizer for test-time training. Ran distributed experiments on 8 NVIDIA H100s with self-funded compute.</p>
+              <p>Set a benchmark leaderboard record using the Muon optimizer for test-time training. Earlier contributions earned OpenAI compute support for further experiments on 8 NVIDIA H100s.</p>
               <a className="text-link" href="https://github.com/openai/parameter-golf/pull/1148" target="_blank" rel="noreferrer">View merged contribution <Arrow diagonal /></a>
             </article>
           </div>
@@ -91,11 +91,11 @@ export default function Portfolio() {
         <section id="work" className="section work-section" aria-labelledby="work-title">
           <div className="section-heading heading-with-link">
             <div><p className="eyebrow">02 / Selected projects</p><h2 id="work-title">Ideas I’ve put to work.</h2></div>
-            <a className="text-link" href="https://github.com/aamodbhatt" target="_blank" rel="noreferrer">All on GitHub <Arrow diagonal /></a>
+            <a className="text-link" href="https://github.com/aamodbhatt" target="_blank" rel="noreferrer">More on GitHub <Arrow diagonal /></a>
           </div>
           <div className="project-list">
             {projects.map((project, i) => (
-              <article className="project" key={project.name}>
+              <article className="project" key={project.name} id={project.name === "Small Frame" ? "small-frame" : undefined}>
                 <span className="project-number" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                 <div className="project-identity">
                   <p className="eyebrow">{project.category}</p>
@@ -123,7 +123,7 @@ export default function Portfolio() {
         </section>
 
         <section className="contact-section" aria-labelledby="contact-title">
-          <p className="eyebrow"><span className="accent" aria-hidden="true">✦</span> / Make contact</p>
+          <p className="eyebrow">04 / Make contact</p>
           <div className="contact-row"><h2 id="contact-title">Have something<br />interesting in mind?</h2><a className="contact-link" href="mailto:bhatt.aamod@gmail.com">Let’s talk <Arrow diagonal /></a></div>
           <a className="email-link" href="mailto:bhatt.aamod@gmail.com">bhatt.aamod@gmail.com</a>
         </section>
