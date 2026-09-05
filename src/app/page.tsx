@@ -115,7 +115,7 @@ export default function Portfolio() {
               <div className="experience-heading"><h3><a href="https://vitalcep.com" target="_blank" rel="noreferrer">Vitalcep <Arrow diagonal /></a></h3><p className="date">Dec 2024 — Jan 2026</p></div>
               <p className="role">Growth &amp; Automation Engineer <span>· Part-time</span></p>
               <p className="body-copy">Built an end-to-end Meta Ads automation pipeline with n8n on AWS EC2. Connected creative, campaign, and optimization workflows, handling 10,000+ events a day.</p>
-              <dl className="experience-stats"><div><dt>Less setup time</dt><dd>85%</dd></div><div><dt>Improvement in ROAS</dt><dd>2.3×</dd></div><div><dt>Workflow uptime</dt><dd>99.5%</dd></div></dl>
+              <dl className="experience-stats"><div><dt>Less setup time</dt><dd>85%</dd></div><div><dt>Improvement in ROAS</dt><dd>2.3×</dd></div><div><dt>Workflow uptime</dt><dd>99.9%</dd></div></dl>
               <div className="education"><p className="eyebrow">Education / 2022 — 2026</p><h3>B.E. in AI &amp; Machine Learning</h3><p>Acharya Institute of Technology · VTU</p><p className="education-score">9.28 / 10 CGPA</p></div>
             </div>
             <div className="toolkit"><p className="eyebrow">The tools behind the work</p><dl>{skills.map(skill => <div key={skill.label}><dt>{skill.label}</dt><dd>{skill.value}</dd></div>)}</dl></div>
