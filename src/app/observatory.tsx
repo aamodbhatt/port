@@ -5,9 +5,9 @@ import { projects, skills } from "./portfolio-data";
 
 const destinations = [
   { id: "work", name: "Projects", note: "Things taking shape", x: 75, y: 26 },
-  { id: "research", name: "Research", note: "Questions worth chasing", x: 23, y: 28 },
-  { id: "about", name: "Experience", note: "Out in the real world", x: 24, y: 75 },
   { id: "skills", name: "Toolkit", note: "Familiar instruments", x: 75, y: 72 },
+  { id: "about", name: "Experience", note: "Out in the real world", x: 24, y: 75 },
+  { id: "research", name: "Research", note: "Questions worth chasing", x: 23, y: 28 },
 ] as const;
 
 function subscribeHash(callback: () => void) {
