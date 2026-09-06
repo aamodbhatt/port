@@ -255,3 +255,107 @@ h2 { font-family: var(--font-display), Georgia, serif; font-size: 38px; letter-s
   .shooting-stars, .pointer-glow { display: none; }
   .motion-enabled .has-entered, .motion-enabled .skill-group.has-entered li { opacity: 1; transform: none; }
 }
+
+/* The observatory is a destination, not a document to scroll through. */
+.observatory { position: relative; margin: 0 -24px; padding: 36px 34px 0; border: 1px solid #c6d5e526; border-radius: 32px; background: radial-gradient(ellipse at 19% 47%, #23324566, transparent 48%), #0a101aed; box-shadow: 0 24px 80px #00000020; }
+.orbit-anchor { position: absolute; top: 0; scroll-margin-top: 24px; }
+.observatory-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.observatory-heading h2 { margin-top: 8px; font-size: 42px; }
+.observatory-heading > p { text-align: right; color: #d4dce3; font-size: 14px; line-height: 1.8; }
+.observatory-heading > p span { color: var(--muted); font-size: 12px; }
+.exploration-layout { display: grid; grid-template-columns: .92fr 1.08fr; gap: 28px; align-items: center; padding: 30px 0; }
+.orbital-map { position: relative; width: 100%; aspect-ratio: 1; align-self: center; }
+.orbit-lines { width: 100%; height: 100%; position: absolute; inset: 0; stroke: #c0d0e327; stroke-width: 1; }
+.orbit-lines .orbit-connection { stroke: #e1cfad65; stroke-dasharray: 3 6; }
+.map-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; }
+.map-center > span { display: block; font-family: var(--font-display), Georgia, serif; font-size: 55px; line-height: 1; color: #eee4d0; }
+.map-center small { display: block; margin-top: 10px; font: 12px var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: 1.4px; color: #abb9c9; }
+.destination { position: absolute; left: var(--node-x); top: var(--node-y); transform: translate(-50%, -50%); min-width: 104px; min-height: 66px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; color: #b3c1d1; background: none; border: 0; padding: 10px 5px; cursor: pointer; font-family: inherit; }
+.destination-label { display: flex; align-items: center; gap: 7px; padding: 3px 7px; border-radius: 6px; background: #0c1420e8; font-size: 14px; line-height: 1.5; }
+.destination-label small { font: 12px var(--font-geist-mono), monospace; opacity: .6; }
+.destination-dot { display: grid; place-items: center; width: 21px; height: 21px; border: 1px solid #acbdd34a; border-radius: 50%; }
+.destination-dot i { width: 7px; height: 7px; border-radius: 50%; background: #899eaf; }
+.destination[aria-pressed="true"] { color: #f3e2c4; }
+.destination[aria-pressed="true"] .destination-dot { border-color: #e1cfad8c; box-shadow: 0 0 0 5px #e1cfad0d, 0 0 24px #e1cfad24; }
+.destination[aria-pressed="true"] .destination-dot i { background: var(--accent); }
+.destination:hover { color: var(--accent); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.destination:focus-visible { border-radius: 12px; }
+.map-caption { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 9px; color: #a8b8c9; font-size: 12px; }
+.orbit-traveler { position: absolute; inset: 16%; border-radius: 50%; pointer-events: none; }
+.orbit-traveler > i { display: block; position: absolute; top: -2px; left: calc(50% - 2px); width: 4px; height: 4px; background: #d0e2ef; border-radius: 50%; box-shadow: 0 0 9px #c4dcec; }
+.exploration-panel { min-width: 0; min-height: 494px; border-left: 1px solid var(--border); padding: 4px 0 0 32px; }
+.exploration-panel [hidden] { display: none !important; }
+.panel-topline { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 44px; margin-bottom: 22px; }
+.panel-count { color: var(--muted); font: 12px var(--font-geist-mono), monospace; }
+.step-controls { display: flex; gap: 6px; }
+.step-controls button { min-width: 40px; min-height: 40px; border-radius: 50%; border: 1px solid #bccadc32; background: transparent; color: #d8e0e9; font-size: 19px; cursor: pointer; }
+.step-controls button:hover { background: #e1cfad13; border-color: #e1cfad8c; }
+.exploration-panel h3 { font-family: var(--font-display), Georgia, serif; font-size: 43px; font-weight: 400; line-height: 1.08; letter-spacing: -.7px; margin-top: 10px; }
+.project-focus { min-height: 298px; }
+.panel-copy { margin: 19px 0; font-size: 16px; line-height: 1.85; color: #bcc7d4; }
+.project-focus .project-status { margin-top: 13px; }
+.observatory-link { margin-top: 17px; gap: 14px; color: #e1cfad; }
+.quiet-note { font-size: 14px; color: #a8b5c4; margin-top: 23px; line-height: 1.8; }
+.project-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px; }
+.project-picker button { min-height: 36px; text-align: left; padding: 7px 9px; border: 1px solid transparent; border-radius: 7px; background: none; color: #a8b8c9; cursor: pointer; font: 14px/1.4 var(--font-geist-sans), sans-serif; }
+.project-picker button > span { margin-right: 9px; opacity: .6; font: 12px var(--font-geist-mono), monospace; }
+.project-picker button[aria-pressed="true"], .research-picker button[aria-pressed="true"] { background: #e1cfad0d; border-color: #e1cfad45; color: #eee0c7; }
+.project-picker button:hover, .research-picker button:hover { color: var(--accent); }
+.research-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.research-picker button { font: 14px var(--font-geist-sans), sans-serif; color: #b7c3d1; border: 1px solid #bccadc25; background: none; padding: 11px 13px; border-radius: 30px; min-height: 40px; cursor: pointer; }
+.research-focus .big-number { font-family: var(--font-geist-sans), sans-serif; font-size: 68px; letter-spacing: -3px; margin: 26px 0 15px; }
+.big-number > span { display: block; color: #a8b8c9; font-size: 14px; letter-spacing: 0; line-height: 2; margin-top: 5px; }
+.experience-focus .role { margin-top: 18px; }
+.experience-focus .experience-stats { margin-top: 27px; gap: 22px; }
+.experience-focus .experience-stats dd { font-size: 28px; }
+.constellation-skills { margin: 24px 0 0; }
+.constellation-skills > div + div { margin-top: 21px; }
+.constellation-skills dd { margin: 0; }
+.constellation-skills dt { font-size: 14px; }
+.constellation-skills .skill-chips { gap: 6px; }
+.constellation-skills .skill-chips li { padding: 4px 9px; font-size: 14px; }
+.observatory-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--border); padding: 13px 0; color: #a8b8c9; font-size: 12px; }
+.observatory-bottom .text-link { margin-top: 0; font-size: 14px; }
+.contact-section { padding: 64px 18px 42px; }
+.contact-row h2 { font-size: 44px; }
+.site-footer { background: none; border-top: 1px solid #afc1d326; padding: 20px 18px; }
+.photo-credit { padding: 0 18px 80px; }
+.motion-enabled .orbit-traveler { animation: little-orbit 64s linear infinite; }
+.motion-enabled .destination-dot { transition: box-shadow 350ms, border-color 350ms, transform 350ms; }
+.motion-enabled .destination:hover .destination-dot { transform: scale(1.18); }
+.motion-enabled .panel-arrival { animation: panel-arrive 380ms ease-out both; }
+.motion-enabled .toolkit-focus:not([hidden]) .skill-chips li { animation: arrive 500ms ease-out backwards; }
+@keyframes panel-arrive { from { opacity: .35; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1000px) {
+  .observatory { margin: 0 -12px; padding: 30px 24px 0; }
+  .exploration-layout { grid-template-columns: .85fr 1.15fr; gap: 15px; }
+  .exploration-panel { padding-left: 24px; }
+  .destination { min-width: 90px; }
+  .destination-label { font-size: 14px; }
+  .map-center > span { font-size: 45px; }
+  .map-center small { font-size: 12px; letter-spacing: .8px; }
+}
+@media (max-width: 760px) {
+  .observatory { border-radius: 24px; padding: 25px 20px 0; }
+  .observatory-heading { display: block; }
+  .observatory-heading h2 { font-size: 34px; }
+  .observatory-heading > p { text-align: left; margin-top: 14px; }
+  .observatory-heading > p br, .observatory-heading > p span { display: none; }
+  .exploration-layout { grid-template-columns: 1fr; gap: 22px; padding-top: 8px; }
+  .orbital-map { max-width: 360px; width: 100%; margin: 0 auto; }
+  .map-center small { font-size: 12px; }
+  .destination-label { font-size: 14px; }
+  .exploration-panel { border-left: 0; border-top: 1px solid var(--border); padding: 18px 0 0; min-height: 470px; }
+  .project-focus { min-height: 0; }
+  .exploration-panel h3 { font-size: 37px; }
+  .panel-topline { margin-bottom: 19px; }
+  .constellation-skills .skill-chips li { font-size: 14px; }
+  .project-picker button { min-height: 44px; font-size: 14px; }
+  .observatory-bottom { gap: 10px; font-size: 12px; }
+  .observatory-bottom > span { max-width: 140px; }
+  .contact-section { padding: 48px 0 30px; }
+  .contact-row h2 { font-size: 39px; }
+  .site-footer { padding: 22px 0; }
+  .photo-credit { padding: 0 0 80px; }
+}
