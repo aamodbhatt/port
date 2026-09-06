@@ -17,6 +17,23 @@ export default function Atmosphere({ children }: { children: ReactNode }) {
   const enabled = !paused && !reduced;
 
   useEffect(() => {
+    const header = root.current?.querySelector<HTMLElement>(".site-header");
+    if (!header) return;
+    // Keep anchor destinations below the sticky header, including wrapped mobile
+    // navigation, larger text, and the safe area on devices with a notch.
+    const measure = () => {
+      document.documentElement.style.setProperty("--header-height", `${header.getBoundingClientRect().height}px`);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(header);
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--header-height");
+    };
+  }, []);
+
+  useEffect(() => {
     if (!enabled || !root.current) return;
     const scope = root.current;
     const observer = new IntersectionObserver(entries => {
