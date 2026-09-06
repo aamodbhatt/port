@@ -180,7 +180,7 @@ h3 { font-size: 25px; font-weight: 400; line-height: 1.4; letter-spacing: -.6px;
   height: var(--star-size);
   border-radius: 50%;
   background: #f5f1e9;
-  box-shadow: 0 0 7px 1px #dce9ff70;
+  box-shadow: 0 0 5px 1px #e3eeffb3, 0 0 13px 3px #dce9ff55;
   opacity: 0;
   transform: translate(-50%, -50%);
 }
@@ -200,13 +200,13 @@ h3 { font-size: 25px; font-weight: 400; line-height: 1.4; letter-spacing: -.6px;
   background-repeat: no-repeat;
 }
 .night-cloud-distant { top: 23%; left: -30%; width: 115%; }
-.motion-enabled .night-cloud { background-image: url('/cirrus-wisps.png'); animation: cloud-drift 64s ease-in-out -25s infinite alternate; }
-.motion-enabled .night-cloud-distant { animation-duration: 89s; animation-delay: -61s; }
+.motion-enabled .night-cloud { background-image: url('/cirrus-wisps.png'); animation: cloud-drift 40s ease-in-out -16s infinite alternate; }
+.motion-enabled .night-cloud-distant { animation-duration: 58s; animation-delay: -40s; }
 @keyframes starlight {
-  0%, 28%, 76%, 100% { opacity: .08; }
-  44% { opacity: .95; }
-  53% { opacity: .3; }
-  62% { opacity: .7; }
+  0%, 24%, 78%, 100% { opacity: .04; transform: translate(-50%, -50%) scale(.45); }
+  43% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  54% { opacity: .2; transform: translate(-50%, -50%) scale(.65); }
+  63% { opacity: .8; transform: translate(-50%, -50%) scale(1); }
 }
 @keyframes cloud-drift {
   from { transform: translate3d(-6%, 0, 0); opacity: .11; }
