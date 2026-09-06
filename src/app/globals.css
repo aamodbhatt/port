@@ -171,6 +171,7 @@ h3 { font-size: 25px; font-weight: 400; line-height: 1.4; letter-spacing: -.6px;
   top: calc((100vh - var(--photo-height)) * var(--photo-y));
 }
 .night-image { object-fit: cover; }
+.night-glints { z-index: 2; }
 .photo-star {
   position: absolute;
   left: var(--star-x);
@@ -179,7 +180,7 @@ h3 { font-size: 25px; font-weight: 400; line-height: 1.4; letter-spacing: -.6px;
   height: var(--star-size);
   border-radius: 50%;
   background: #f5f1e9;
-  box-shadow: 0 0 5px 1px #dce9ff55;
+  box-shadow: 0 0 7px 1px #dce9ff70;
   opacity: 0;
   transform: translate(-50%, -50%);
 }
@@ -188,27 +189,30 @@ h3 { font-size: 25px; font-weight: 400; line-height: 1.4; letter-spacing: -.6px;
 }
 .night-cloud {
   position: absolute;
+  z-index: 2;
   top: 0;
   left: -18%;
   width: 130%;
   aspect-ratio: 3 / 1;
   opacity: 0;
-  background: url('/cirrus-wisps.png') center / contain no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .night-cloud-distant { top: 23%; left: -30%; width: 115%; }
-.motion-enabled .night-cloud { animation: cloud-drift 130s ease-in-out -44s infinite alternate; }
-.motion-enabled .night-cloud-distant { animation-duration: 173s; animation-delay: -117s; }
+.motion-enabled .night-cloud { background-image: url('/cirrus-wisps.png'); animation: cloud-drift 64s ease-in-out -25s infinite alternate; }
+.motion-enabled .night-cloud-distant { animation-duration: 89s; animation-delay: -61s; }
 @keyframes starlight {
-  0%, 34%, 72%, 100% { opacity: .04; }
-  48% { opacity: .55; }
-  55% { opacity: .23; }
-  61% { opacity: .4; }
+  0%, 28%, 76%, 100% { opacity: .08; }
+  44% { opacity: .95; }
+  53% { opacity: .3; }
+  62% { opacity: .7; }
 }
 @keyframes cloud-drift {
-  from { transform: translate3d(-4%, 0, 0); opacity: .045; }
-  to { transform: translate3d(12%, 3%, 0); opacity: .095; }
+  from { transform: translate3d(-6%, 0, 0); opacity: .11; }
+  to { transform: translate3d(18%, 3%, 0); opacity: .19; }
 }
-.night-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #070d16e0 0%, #070d1699 45%, #070d164d 80%), linear-gradient(0deg, #090e16eb 0%, transparent 45%, #090e1640 100%); }
+.night-shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #070d16e0 0%, #070d1699 45%, #070d164d 80%), linear-gradient(0deg, #090e16eb 0%, transparent 45%, #090e1640 100%); }
 .site-header { border-color: #d8e3f025; }
 .hero { padding-top: 95px; }
 .hero-copy { max-width: 680px; }

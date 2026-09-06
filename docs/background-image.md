@@ -13,11 +13,11 @@ This is a photographer-published image, replacing the previous AI-generated back
 
 The full-resolution Wikimedia original is stored unchanged. Next.js optimizes delivery at quality 90 with responsive candidates up to the native 6276-pixel width; portrait sizing accounts for the width needed to cover the screen height. This avoids the previous 3840-pixel ceiling without sending the original 17.6 MB JPEG to every visitor. The source retains its natural long-exposure softness and grain; CSS crops the visible framing and places dark overlays above the photo for readable text. The photograph and any adaptation of it remain under CC BY-SA 4.0. The site footer credits the photographer, links to the source and license, and notes the display adjustments. No endorsement is implied.
 
-Animated shooting stars, gentle glints over 24 sampled bright points, and drifting cloud textures are separate decorative website layers. They are not part of the photograph. The glints share the image’s cover crop so they remain anchored on different screen sizes. Only opacity and transforms animate; there is no canvas, WebGL renderer, or continuous JavaScript animation loop. Phones render one cloud layer, larger screens two. Motion can be paused and respects the reduced-motion preference.
+Animated shooting stars, glints over 24 sampled bright points, and drifting cloud textures are separate decorative website layers. They are not part of the photograph. The glints share the image’s cover crop so they remain anchored on different screen sizes. Glints and clouds sit above the photo’s dark shade, while remaining behind all page content; their own opacity controls visibility. Glints cycle independently every 4.5–9.5 seconds, and the clouds drift over 64/89-second alternating passes. Only opacity and transforms animate; there is no canvas, WebGL renderer, or continuous JavaScript animation loop. Phones render one cloud layer, larger screens two. Motion can be paused and respects the reduced-motion preference.
 
 ## Cloud overlay asset
 
-Asset: `public/cirrus-wisps.png` (2172 × 724 RGBA). Created with the built-in image generator in generation mode, one request. The original PNG is used unchanged, with CSS opacity 0.045–0.095 beneath the readability shade. This is an atmospheric overlay only; the real Himalayan photograph was not generated or edited with AI.
+Asset: `public/cirrus-wisps.png` (2172 × 724 RGBA). Created with the built-in image generator in generation mode, one request. The original PNG is used unchanged, with CSS opacity 0.11–0.19 above the photograph’s readability shade. This is an atmospheric overlay only; the real Himalayan photograph was not generated or edited with AI.
 
 Exact generation prompt:
 

@@ -25,19 +25,21 @@ export default function NightSky() {
           priority
           className="night-image"
         />
+      </div>
+      <div className="night-shade" />
+      <div className="night-photo-frame night-glints">
         {stars.map(([x, y], index) => (
           <i key={`${x}-${y}`} className="photo-star" style={{
             "--star-x": `${x}%`,
             "--star-y": `${y}%`,
-            "--star-size": `${1.3 + (index % 3) * .4}px`,
-            "--star-duration": `${7 + (index * 7 % 9)}s`,
+            "--star-size": `${1.8 + (index % 3) * .5}px`,
+            "--star-duration": `${4.5 + (index * 7 % 6)}s`,
             "--star-delay": `${-index * 2.37}s`,
           } as CSSProperties} />
         ))}
       </div>
       <div className="night-cloud" />
       <div className="night-cloud night-cloud-distant" />
-      <div className="night-shade" />
     </div>
   );
 }
