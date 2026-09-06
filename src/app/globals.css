@@ -157,8 +157,57 @@ h3 { font-size: 25px; font-weight: 400; line-height: 1.4; letter-spacing: -.6px;
 
 /* A quiet night sky; the landscape stays still while small details move. */
 .atmosphere { position: relative; isolation: isolate; overflow: clip; }
-.night-backdrop { position: fixed; inset: 0; z-index: -3; background: #090e16; }
-.night-image { object-fit: cover; object-position: 58% center; }
+.night-backdrop { position: fixed; inset: 0; z-index: -3; overflow: hidden; pointer-events: none; background: #090e16; }
+.night-photo-frame {
+  /* Image and glints share the exact same cover crop at every aspect ratio. */
+  --photo-width: max(100vw, 157.8470825vh);
+  --photo-height: max(100vh, 63.3524538vw);
+  --photo-x: .58;
+  --photo-y: .5;
+  position: absolute;
+  width: var(--photo-width);
+  height: var(--photo-height);
+  left: calc((100vw - var(--photo-width)) * var(--photo-x));
+  top: calc((100vh - var(--photo-height)) * var(--photo-y));
+}
+.night-image { object-fit: cover; }
+.photo-star {
+  position: absolute;
+  left: var(--star-x);
+  top: var(--star-y);
+  width: var(--star-size);
+  height: var(--star-size);
+  border-radius: 50%;
+  background: #f5f1e9;
+  box-shadow: 0 0 5px 1px #dce9ff55;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+.motion-enabled .photo-star {
+  animation: starlight var(--star-duration) ease-in-out var(--star-delay) infinite;
+}
+.night-cloud {
+  position: absolute;
+  top: 0;
+  left: -18%;
+  width: 130%;
+  aspect-ratio: 3 / 1;
+  opacity: 0;
+  background: url('/cirrus-wisps.png') center / contain no-repeat;
+}
+.night-cloud-distant { top: 23%; left: -30%; width: 115%; }
+.motion-enabled .night-cloud { animation: cloud-drift 130s ease-in-out -44s infinite alternate; }
+.motion-enabled .night-cloud-distant { animation-duration: 173s; animation-delay: -117s; }
+@keyframes starlight {
+  0%, 34%, 72%, 100% { opacity: .04; }
+  48% { opacity: .55; }
+  55% { opacity: .23; }
+  61% { opacity: .4; }
+}
+@keyframes cloud-drift {
+  from { transform: translate3d(-4%, 0, 0); opacity: .045; }
+  to { transform: translate3d(12%, 3%, 0); opacity: .095; }
+}
 .night-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #070d16e0 0%, #070d1699 45%, #070d164d 80%), linear-gradient(0deg, #090e16eb 0%, transparent 45%, #090e1640 100%); }
 .site-header { border-color: #d8e3f025; }
 .hero { padding-top: 95px; }
@@ -242,7 +291,9 @@ h2 { font-family: var(--font-system); font-size: 38px; letter-spacing: -.7px; }
   h1 { font-size: clamp(46px, 12vw, 80px); letter-spacing: -.055em; }
   .hero-heading { font-size: 25px; }
   .hero-footer { margin-top: 110px; }
-  .night-image { object-position: 68% center; }
+  .night-photo-frame { --photo-x: .68; }
+  .night-cloud { width: 210%; left: -65%; top: 8%; }
+  .night-cloud-distant { display: none; }
   .night-shade { background: linear-gradient(90deg, #070d16cb, #070d1670), linear-gradient(0deg, #090e16dc, transparent 70%); }
   .content-surface { padding: 0 20px; margin: 0 -12px; border-radius: 15px 15px 0 0; backdrop-filter: none; background: #0a101af7; }
   h2 { font-size: 32px; }
@@ -254,7 +305,7 @@ h2 { font-family: var(--font-system); font-size: 38px; letter-spacing: -.7px; }
   .motion-toggle { right: 12px; bottom: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .shooting-stars, .pointer-glow { display: none; }
+  .shooting-stars, .pointer-glow, .photo-star, .night-cloud { display: none; }
   .motion-enabled .has-entered, .motion-enabled .skill-group.has-entered li { opacity: 1; transform: none; }
 }
 
@@ -463,5 +514,5 @@ h1 { font-size: clamp(2.75rem, 8.5vw, 6.5rem); overflow-wrap: anywhere; }
 @media (max-height: 32rem) and (orientation: landscape) {
   .hero { padding-top: 1.75rem; }
   .hero-footer { margin-top: 2rem; }
-  .night-image { object-position: 58% 65%; }
+  .night-photo-frame { --photo-x: .58; --photo-y: .65; }
 }

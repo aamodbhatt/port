@@ -1,4 +1,4 @@
-import Image from "next/image";
+import NightSky from "./night-sky";
 import Atmosphere from "./atmosphere";
 import Observatory from "./observatory";
 
@@ -13,7 +13,7 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 export default function Portfolio() {
   return (
     <Atmosphere>
-      <div className="night-backdrop" aria-hidden="true"><Image src="/annapurna-milky-way.jpg" alt="" fill sizes="100vw" priority className="night-image" /><div className="night-shade" /></div>
+      <NightSky />
       <div className="site-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <header className="site-header">
