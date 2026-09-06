@@ -31,7 +31,7 @@ export default function Portfolio() {
             <p className="eyebrow"><span className="status-dot" /> Machine learning engineer</p>
             <h1 id="hero-title">Aamod Bhatt<span className="name-period">.</span></h1>
             <p className="hero-heading">Curiosity, translated<br />into working systems.</p>
-            <p className="hero-description">I build at the intersection of machine learning research and real-world engineering. Lately, that means video generation, language models, and a lot of experiments.</p>
+            <p className="hero-description">I build and break things [they mostly break &lt;/3]</p>
             <div className="hero-actions">
               <a className="button-primary" href="#work">Explore my work <Arrow /></a>
               <a className="text-link" href="/resume.pdf" download="Aamod-Bhatt-Resume.pdf">Download résumé <Arrow diagonal /></a>
